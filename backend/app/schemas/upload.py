@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 from app.schemas.video_metadata import VideoMetadata
-
+from app.schemas.frame_extraction import FrameExtractionResponse
 
 
 class UploadResponse(BaseModel):
@@ -10,4 +10,4 @@ class UploadResponse(BaseModel):
     size: int
     message: str
     metadata: VideoMetadata
-    metadata: VideoMetadata
+    frames: FrameExtractionResponse
