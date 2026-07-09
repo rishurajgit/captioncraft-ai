@@ -2,6 +2,8 @@ from pathlib import Path
 from fastapi import UploadFile
 from app.services.metadata import extract_video_metadata
 from app.services.frame_extractor import extract_frames
+from app.services.audio import extract_audio
+
 
 UPLOAD_DIR = Path("uploads/videos")
 
@@ -21,6 +23,7 @@ async def save_video(file: UploadFile) -> dict:
         f.write(content)
         metadata = extract_video_metadata(file_path)
         frames = extract_frames(file_path)
+        audio_path = extract_audio(file_path)
 
     return {
         "filename": file.filename,
@@ -28,5 +31,8 @@ async def save_video(file: UploadFile) -> dict:
         "size": len(content),
         "message": "Video uploaded successfully",
         "metadata": metadata,
-        "frames": frames
+        "frames": frames,
+        "audio":{
+            "audio_path": audio_path
+        }
     }

@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 from app.schemas.video_metadata import VideoMetadata
 from app.schemas.frame_extraction import FrameExtractionResponse
-
+from app.schemas.audio import AudioResponse
 
 class UploadResponse(BaseModel):
     filename: str
@@ -11,3 +11,4 @@ class UploadResponse(BaseModel):
     message: str
     metadata: VideoMetadata
     frames: FrameExtractionResponse
+    audio: AudioResponse
