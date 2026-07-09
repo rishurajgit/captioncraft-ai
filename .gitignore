@@ -12,3 +12,23 @@ frontend/.next/
 # OS
 .DS_Store
 Thumbs.db
+# Python Cache
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environment
+backend/.venv/
+
+# Python cache
+.pytest_cache/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
