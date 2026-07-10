@@ -85,7 +85,10 @@ def load_prompt() -> str:
         return file.read()
 
 
-def generate_captions(transcript: str) -> CaptionResponse:
+def generate_captions(
+    transcript: str,
+    vision_description: str = ""
+    ) -> CaptionResponse:
 
     prompt = load_prompt()
 
@@ -93,8 +96,11 @@ def generate_captions(transcript: str) -> CaptionResponse:
 {prompt}
 
 Transcript:
-
 {transcript}
+
+
+Visual Description:
+{vision_description}
 """
 
     response = client.models.generate_content(
