@@ -5,7 +5,7 @@ from app.schemas.video_metadata import VideoMetadata
 from app.schemas.audio import AudioResponse
 from app.schemas.transcript import TranscriptResponse
 # from app.schemas.vision import VisionResponse
-
+from app.schemas.caption import CaptionResponse
 
 
 
@@ -19,3 +19,4 @@ class UploadResponse(BaseModel):
     audio: AudioResponse
     transcript: TranscriptResponse
     # vision: VisionResponse
+    captions: CaptionResponse
