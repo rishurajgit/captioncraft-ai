@@ -7,6 +7,9 @@ import { useRef, useState } from "react";
 
 import api from "@/lib/api"
 
+import ResultSection from "@/components/ResultSection";
+
+
 export default function UploadCard() {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -83,75 +86,8 @@ export default function UploadCard() {
 
        {/* Results */}
       {result && (
-        <div className="mt-10 space-y-6">
-
-          {/* Transcript */}
-          <Card>
-            <CardContent className="py-6">
-              <h2 className="mb-3 text-2xl font-bold">
-                📄 Transcript
-              </h2>
-
-              <p className="whitespace-pre-wrap text-gray-700">
-                {result.transcript.transcript}
-              </p>
-            </CardContent>
-          </Card>
-
-          {/* Formal */}
-          <Card>
-            <CardContent className="py-6">
-              <h2 className="mb-3 text-2xl font-bold">
-                💼 Formal Caption
-              </h2>
-
-              <p className="whitespace-pre-wrap">
-                {result.captions.formal}
-              </p>
-            </CardContent>
-          </Card>
-
-          {/* Sarcastic */}
-          <Card>
-            <CardContent className="py-6">
-              <h2 className="mb-3 text-2xl font-bold">
-                😏 Sarcastic Caption
-              </h2>
-
-              <p className="whitespace-pre-wrap">
-                {result.captions.sarcastic}
-              </p>
-            </CardContent>
-          </Card>
-
-          {/* Humorous Tech */}
-          <Card>
-            <CardContent className="py-6">
-              <h2 className="mb-3 text-2xl font-bold">
-                💻 Humorous Tech Caption
-              </h2>
-
-              <p className="whitespace-pre-wrap">
-                {result.captions.humorous_tech}
-              </p>
-            </CardContent>
-          </Card>
-
-          {/* Humorous Non-Tech */}
-          <Card>
-            <CardContent className="py-6">
-              <h2 className="mb-3 text-2xl font-bold">
-                😂 Humorous Non-Tech Caption
-              </h2>
-
-              <p className="whitespace-pre-wrap">
-                {result.captions.humorous_non_tech}
-              </p>
-            </CardContent>
-          </Card>
-
-        </div>
-      )}
+  <ResultSection result={result} />
+)}
     </div>
   );
 }
