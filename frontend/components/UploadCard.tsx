@@ -3,10 +3,41 @@
 import { Upload } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+
+import api from "@/lib/api"
 
 export default function UploadCard() {
   const inputRef = useRef<HTMLInputElement>(null);
+
+   const [loading, setLoading] = useState(false);
+   const [result, setResult] = useState<any>(null);
+   async function uploadVideo(file: File) {
+    setLoading(true);
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await api.post(
+        "/api/upload/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+    //   console.log(response.data);
+    setResult(response.data);
+    } catch (error) {
+      console.error(error);
+      alert("Upload failed");
+    }
+
+    setLoading(false);
+  }
 
   return (
     <div className="mx-auto max-w-3xl px-6">
@@ -26,21 +57,101 @@ export default function UploadCard() {
           </p>
 
           <input
+            ref={inputRef}
+            hidden
             type="file"
             accept="video/*"
-            hidden
-            ref={inputRef}
-          />
+            onChange={(e) => {
+                const file = e.target.files?.[0];
+
+        if (file) {
+      uploadVideo(file);
+    }
+  }}
+/>
 
           <Button
             size="lg"
+            disabled={loading}
             onClick={() => inputRef.current?.click()}
           >
-            Choose Video
+            {loading ? "Uploading...": "Choose Video"}
           </Button>
 
         </CardContent>
       </Card>
+
+       {/* Results */}
+      {result && (
+        <div className="mt-10 space-y-6">
+
+          {/* Transcript */}
+          <Card>
+            <CardContent className="py-6">
+              <h2 className="mb-3 text-2xl font-bold">
+                📄 Transcript
+              </h2>
+
+              <p className="whitespace-pre-wrap text-gray-700">
+                {result.transcript.transcript}
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Formal */}
+          <Card>
+            <CardContent className="py-6">
+              <h2 className="mb-3 text-2xl font-bold">
+                💼 Formal Caption
+              </h2>
+
+              <p className="whitespace-pre-wrap">
+                {result.captions.formal}
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Sarcastic */}
+          <Card>
+            <CardContent className="py-6">
+              <h2 className="mb-3 text-2xl font-bold">
+                😏 Sarcastic Caption
+              </h2>
+
+              <p className="whitespace-pre-wrap">
+                {result.captions.sarcastic}
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Humorous Tech */}
+          <Card>
+            <CardContent className="py-6">
+              <h2 className="mb-3 text-2xl font-bold">
+                💻 Humorous Tech Caption
+              </h2>
+
+              <p className="whitespace-pre-wrap">
+                {result.captions.humorous_tech}
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Humorous Non-Tech */}
+          <Card>
+            <CardContent className="py-6">
+              <h2 className="mb-3 text-2xl font-bold">
+                😂 Humorous Non-Tech Caption
+              </h2>
+
+              <p className="whitespace-pre-wrap">
+                {result.captions.humorous_non_tech}
+              </p>
+            </CardContent>
+          </Card>
+
+        </div>
+      )}
     </div>
   );
 }
