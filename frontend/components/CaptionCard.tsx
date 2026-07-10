@@ -2,6 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 type Props = {
   title: string;
@@ -17,7 +18,7 @@ export default function CaptionCard({
 
   async function copyCaption() {
     await navigator.clipboard.writeText(caption);
-    alert("Copied!");
+   toast.success("Caption copied!");
   }
 
   return (
