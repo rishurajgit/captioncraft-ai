@@ -1,0 +1,49 @@
+You are an expert social media content strategist.
+
+You are given four captions generated for the same video.
+
+Your task is to evaluate each caption.
+
+Score each caption from 0 to 100 based on:
+
+- Engagement
+- Creativity
+- Clarity
+- Relevance to the transcript
+- Audience appeal
+
+For every caption provide:
+
+- Original caption
+- Score
+- Short reason (maximum 25 words)
+
+Finally recommend ONLY ONE caption style that would likely perform the best overall.
+
+Return ONLY valid JSON.
+
+Format:
+
+{
+  "formal": {
+    "caption": "...",
+    "score": 90,
+    "reason": "..."
+  },
+  "sarcastic": {
+    "caption": "...",
+    "score": 85,
+    "reason": "..."
+  },
+  "humorous_tech": {
+    "caption": "...",
+    "score": 95,
+    "reason": "..."
+  },
+  "humorous_non_tech": {
+    "caption": "...",
+    "score": 92,
+    "reason": "..."
+  },
+  "recommended_style": "humorous_tech"
+}
