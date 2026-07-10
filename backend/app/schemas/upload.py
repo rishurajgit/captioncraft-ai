@@ -6,7 +6,7 @@ from app.schemas.audio import AudioResponse
 from app.schemas.transcript import TranscriptResponse
 # from app.schemas.vision import VisionResponse
 from app.schemas.caption import CaptionResponse
-
+from app.schemas.evaluation import EvaluationResponse
 
 
 class UploadResponse(BaseModel):
@@ -20,3 +20,4 @@ class UploadResponse(BaseModel):
     transcript: TranscriptResponse
     # vision: VisionResponse
     captions: CaptionResponse
+    evaluation: EvaluationResponse
