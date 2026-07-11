@@ -4,7 +4,7 @@ import TranscriptCard from "./TranscriptCard";
 import CaptionCard from "./CaptionCard";
 import { Button } from "@/components/ui/button";
 import { downloadCaptions } from "@/lib/download";
-
+import VideoInfoCard from "./VideoInfoCard";
 
 
 type Props = {
@@ -14,6 +14,12 @@ type Props = {
 export default function ResultsSection({ result }: Props) {
   return (
     <section className="mt-12 space-y-8">
+
+    <VideoInfoCard
+  filename={result.filename}
+  size={result.size}
+  metadata={result.metadata}
+/>
 
       {/* Transcript */}
       <TranscriptCard
