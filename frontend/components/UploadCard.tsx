@@ -8,7 +8,7 @@ import { useRef, useState } from "react";
 import api from "@/lib/api"
 
 import ResultSection from "@/components/ResultSection";
-
+import ProcessingStatus from "@/components/ProcessingStatus";
 
 export default function UploadCard() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -83,6 +83,9 @@ export default function UploadCard() {
 
         </CardContent>
       </Card>
+
+        {/* Processing */}
+    <ProcessingStatus loading={loading} />
 
        {/* Results */}
       {result && (
